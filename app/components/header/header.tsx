@@ -1,0 +1,109 @@
+'use client';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../context/UserContext';
+import HeaderNotifications from '../../orders/HeaderNotifications';
+
+  /*<li>
+          <Link href="/login/manager_login">Manager_Login</Link>
+        </li>
+            <li>
+              <Link href="/login/customer_login">Customer_Login</Link>
+            </li> */
+
+export default function Header() {
+  
+  const context= useContext(UserContext);  // context can be null in the UserContext
+  if(!context){
+    return null;
+  }
+
+  const { user, setUser } = context;
+  const [showDropdown, setShowDropdown] = useState(false);
+  const router = useRouter();
+
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    router.push('/login');
+  };
+
+
+
+
+  return (
+    <header className="bg-blue-900 text-white px-6 py-4 flex justify-between items-center relative">
+      <h1 className="font-bold text-lg">Laundry Service</h1>
+      <ul className="flex gap-4 items-center">
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/about">About</Link>
+        </li>
+       
+{!user ? (
+  <>
+    <li><Link href="/login">User Login</Link></li>
+    <li><Link href="/signup/customer_signup">Sign Up</Link></li>
+  </>
+) : (
+  <>
+    {user.role === 'admin' && (
+      <li><Link href="/dashboard/admin">Admin Dashboard</Link></li>
+    )}
+    {user.role === 'manager' && (
+      <li><Link href="/customer">Manager Dashboard</Link></li>
+    )}
+    {user.role === 'customer' && (
+      <li><Link href="/orders">My Orders</Link></li>
+    )}
+
+    {/* Profile dropdown */}
+    <li className="relative">
+      <button
+        onClick={() => setShowDropdown(!showDropdown)}
+        className="w-10 h-10 rounded-full bg-white text-blue-600 font-bold"
+      >
+        {user.full_name?.[0] ?? 'U'}
+      </button>
+      {showDropdown && (
+        <div className="absolute right-0 mt-2 bg-white text-blue-600 rounded shadow-lg p-4 w-52 z-50">
+          <p><strong>{user.full_name}</strong></p>
+           <p className="text-sm">
+             {user?.role === 'manager' || user?.role === 'admin'
+              ? ` ${user?.email}` //then
+     /*else*/ : ` ${user?.phone}`}
+            </p> 
+
+<Link
+  href={
+         user.role==="customer"
+      ? `/profile/${user.phone}`
+      : user.role==="manager"
+      ? `managerprofile/${user.id}`
+      : `/`
+  }
+  className="block mt-3 px-3 py-2 bg-green-600 text-white rounded text-center"
+>
+  Profile
+</Link>
+          <button
+            onClick={handleLogout}
+            className="block mt-2 w-full px-3 py-2 bg-red-600 text-white rounded"
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </li>
+  </>
+)}
+
+      </ul>
+    </header>
+  );
+}
