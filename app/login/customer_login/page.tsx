@@ -13,7 +13,10 @@ export default function Login() {
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect') || '/'; // default home
 
-  const { setUser } = useContext(UserContext);
+const context = useContext(UserContext);
+if (!context) return null; // or show error
+const { setUser } = context;
+
 
   const {register,handleSubmit, formState: { errors },} = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -35,10 +38,16 @@ export default function Login() {
       // Save to localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('customerId', customerId.toString());
-      localStorage.setItem('user', JSON.stringify({ phone: data.phone }));
+      localStorage.setItem('user', JSON.stringify({  id: customerId, phone: data.phone, role: 'customer', full_name: '' }));
 
       // Update Context
-      setUser({ phone: data.phone, customerId });
+// Assuming 'customerId' comes from backend:
+setUser({
+  id: customerId,       // map customerId to id
+  full_name: '',        //  can be fetch later or leave empty
+  phone: data.phone,
+  role: 'customer',     // must include role
+});
 
       setServerMessage(message);
 
