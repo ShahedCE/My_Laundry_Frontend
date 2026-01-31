@@ -3,16 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev --port 4001",
-  "build": "next build",
-  "start": "next start --port 4001"
-}
-,
+    "dev": "next dev --port 4001",
+    "build": "next build",
+    "start": "next start --port 4001"
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "axios": "^1.11.0",
     "leaflet": "^1.9.4",
-    "next": "15.5.2",
+    "next": "15.5.9",
     "pusher-js": "^8.4.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
