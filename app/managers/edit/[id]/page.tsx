@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
-import AdminLayout from "@/app/components/layout/admin_layout/page";
+import AdminLayout from "@/app/components/layout/admin_layout/layout";
 import { z } from "zod";
 
 //  Zod schema for validation

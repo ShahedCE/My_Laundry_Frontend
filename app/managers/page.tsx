@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import AdminLayout from "../components/layout/admin_layout/page";
+import AdminLayout from "../components/layout/admin_layout/layout";
 
 type Manager = {
   id: number;

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { z } from "zod";
-import AdminLayout from "@/app/components/layout/admin_layout/page";
+import AdminLayout from "@/app/components/layout/admin_layout/layout";
 
 // Zod schema for manager validation
 const managerSchema = z.object({

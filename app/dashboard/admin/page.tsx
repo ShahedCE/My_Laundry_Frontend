@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import AdminLayout from "@/app/components/layout/admin_layout/page";
+import AdminLayout from "@/app/components/layout/admin_layout/layout";
 
 
 export default function AdminDashboard() {
