@@ -122,7 +122,7 @@ localStorage.setItem('user', JSON.stringify(user)); // ✅ full user save
 
         <p className="text-center mt-4">
           New here?{" "}
-          <Link href="/register" className="text-green-600">
+          <Link href="./signup/customer_signup" className="text-green-600">
             Register
           </Link>
         </p>
