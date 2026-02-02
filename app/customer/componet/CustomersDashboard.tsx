@@ -66,7 +66,7 @@ export default function CustomersDashboard() {
       try {
         const token = localStorage.getItem('token');
         const res = await axios.get(
-          'http://localhost:3000/customer/all_customers',
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/customer/all_customers`,
             {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -106,7 +106,7 @@ export default function CustomersDashboard() {
 
       const token= localStorage.getItem('token');
 
-      await axios.delete(`http://localhost:3000/customer/${id}`,
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/customer/${id}`,
         {
           headers:{
                        Authorization: `Bearer ${token}`,
@@ -131,7 +131,7 @@ export default function CustomersDashboard() {
             const token= localStorage.getItem('token');
 
       const res = await axios.post(
-        'http://localhost:3000/customer/add_customers',
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/customer/add_customers`,
         newCustomer,
           {
           headers:{

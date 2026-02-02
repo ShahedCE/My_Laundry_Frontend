@@ -76,7 +76,7 @@ export default function OrdersPage() {
     }
 
     try {
-      const res = await fetch('http://localhost:3000/orders/placeorder', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/orders/placeorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

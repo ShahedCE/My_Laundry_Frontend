@@ -27,7 +27,7 @@ export default function OrderSearch() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get<Order[]>('http://localhost:3000/orders');
+        const res = await axios.get<Order[]>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/orders`);
         setOrders(res.data);
       } catch (error) {
         console.error('Failed to fetch orders:', error);
