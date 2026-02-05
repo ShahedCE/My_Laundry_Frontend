@@ -77,7 +77,7 @@ localStorage.setItem('user', JSON.stringify(user)); // ✅ full user save
 
     } catch (err: any) {
       setSuccess("");
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || "Login failed!");
     }
   };
 
